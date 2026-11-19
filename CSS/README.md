@@ -12,6 +12,8 @@ A step-by-step guide to learning CSS after HTML. Every topic has a **simple expl
 - [Phase 6: Responsive Web Design](#phase-6-responsive-web-design)
 - [Phase 7: Advanced CSS](#phase-7-advanced-css)
 - [Phase 8: CSS Projects](#phase-8-css-projects)
+- [Bonus: More Examples for Every Topic](#-bonus-more-examples-for-every-topic)
+- [Practice Challenges](#️-practice-challenges-try-without-looking)
 - [Study Tips](#study-tips)
 
 ---
@@ -1839,3 +1841,921 @@ body {
 ---
 
 **Happy Coding! 🎉** Keep practicing, and build something every week.
+
+
+---
+
+# 🧪 Bonus: More Examples for Every Topic
+
+Extra practice examples for **every topic** in the roadmap. Each one is small and complete, so you can paste it into a file and see the result.
+
+---
+
+## Phase 1: More Fundamentals Examples
+
+### What is CSS? (before and after)
+
+```html
+<h1>My Website</h1>
+<p>Welcome to my page.</p>
+```
+
+```css
+/* Without CSS, it looks plain. With CSS: */
+h1 { color: teal; text-align: center; font-size: 48px; }
+p  { color: #555; text-align: center; font-size: 20px; }
+```
+
+### Types of CSS: same style, three ways
+
+```html
+<!-- 1. Inline -->
+<h2 style="color: tomato;">Inline heading</h2>
+
+<!-- 2. Internal -->
+<style>
+  h3 { color: seagreen; }
+</style>
+<h3>Internal heading</h3>
+
+<!-- 3. External -->
+<link rel="stylesheet" href="style.css">
+<h4>External heading</h4>
+```
+
+```css
+/* style.css */
+h4 { color: royalblue; }
+```
+
+**Priority when they conflict:** Inline > Internal/External (the one written later wins).
+
+### CSS Syntax: many declarations
+
+```css
+button {
+  background-color: #4caf50;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+```
+
+### CSS Selectors: a complete practice page
+
+```html
+<div class="box">
+  <h2 id="title">Selectors</h2>
+  <p class="note">Note one</p>
+  <p class="note special">Note two</p>
+  <a href="#">A link</a>
+  <input type="text" placeholder="Type here">
+</div>
+```
+
+```css
+.box        { border: 2px solid #333; padding: 20px; }   /* class */
+#title      { color: crimson; }                            /* id */
+.note       { color: gray; }                               /* class */
+.note.special { font-weight: bold; }                       /* two classes together */
+.box > a    { color: green; }                              /* direct child */
+a:hover     { color: orange; }                             /* pseudo-class */
+input[type="text"] { padding: 8px; border: 1px solid blue; } /* attribute */
+h2 + p      { margin-top: 0; }                             /* adjacent sibling */
+h2 ~ p      { font-size: 18px; }                           /* all following siblings */
+```
+
+### Colors: a color palette
+
+```html
+<div class="swatch name">red</div>
+<div class="swatch hex">#00a86b</div>
+<div class="swatch rgb">rgb(30,144,255)</div>
+<div class="swatch rgba">rgba(255,0,0,0.4)</div>
+<div class="swatch hsl">hsl(280,70%,50%)</div>
+```
+
+```css
+.swatch { display: inline-block; width: 120px; padding: 20px; color: white; margin: 5px; text-align: center; }
+.name { background: red; }
+.hex  { background: #00a86b; }
+.rgb  { background: rgb(30, 144, 255); }
+.rgba { background: rgba(255, 0, 0, 0.4); }
+.hsl  { background: hsl(280, 70%, 50%); }
+```
+
+### Backgrounds: hero section with overlay
+
+```html
+<section class="hero"><h1>Travel the World</h1></section>
+```
+
+```css
+.hero {
+  height: 60vh;
+  background:
+    linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),  /* dark overlay */
+    url("travel.jpg") center / cover no-repeat;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+```
+
+More gradients:
+
+```css
+.g1 { background: linear-gradient(45deg, #ff512f, #dd2476); }
+.g2 { background: radial-gradient(circle, #fff, #4facfe); }
+.g3 { background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364); }
+```
+
+### Text properties: styled article
+
+```css
+.article h1 {
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+.article p {
+  line-height: 1.8;
+  text-align: justify;
+  text-indent: 2rem;
+}
+
+.article a {
+  text-decoration: none;
+  border-bottom: 2px dotted blue;
+}
+
+.truncate {                       /* cut long text with ... */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 200px;
+}
+```
+
+### Fonts: heading and body fonts
+
+```html
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto&display=swap" rel="stylesheet">
+```
+
+```css
+h1, h2 { font-family: "Playfair Display", serif; font-weight: 700; }
+body   { font-family: "Roboto", sans-serif; font-size: 1rem; }
+code   { font-family: "Courier New", monospace; background: #eee; padding: 2px 6px; }
+.small-caps { font-variant: small-caps; }
+```
+
+### Units: compare them side by side
+
+```css
+html { font-size: 16px; }
+
+.px   { font-size: 24px; }          /* 24px */
+.rem  { font-size: 1.5rem; }        /* 1.5 x 16 = 24px */
+.em-parent { font-size: 20px; }
+.em-parent .em-child { font-size: 1.5em; }  /* 1.5 x 20 = 30px */
+
+.half  { width: 50%; }
+.full-screen { height: 100vh; width: 100vw; }
+.banner { height: 30vh; }           /* 30% of screen height */
+```
+
+---
+
+## Phase 2: More Box Model Examples
+
+### Content, width and height
+
+```css
+.image-box { width: 250px; height: 150px; background: lightblue; }
+.flexible  { width: 100%; max-width: 600px; min-height: 100px; }
+```
+
+### Padding: button sizes
+
+```css
+.btn-small  { padding: 5px 10px; }
+.btn-medium { padding: 10px 20px; }
+.btn-large  { padding: 15px 40px; }
+.input      { padding: 12px 16px; }
+```
+
+### Border: different styles
+
+```css
+.b1 { border: 3px solid black; }
+.b2 { border: 3px dashed red; }
+.b3 { border: 3px dotted blue; }
+.b4 { border: 6px double green; }
+.b5 { border-left: 5px solid orange; padding-left: 15px; }   /* quote style */
+.b6 { border-bottom: 2px solid #ddd; }                       /* divider */
+```
+
+### Margin: spacing and centering
+
+```css
+.container { width: 80%; margin: 0 auto; }       /* centered */
+.section   { margin-bottom: 40px; }              /* space below */
+.negative  { margin-top: -10px; }                /* pull upward */
+h1 { margin: 0 0 10px 0; }
+```
+
+**Margin collapse:** vertical margins of two blocks merge into the larger one.
+
+```css
+.a { margin-bottom: 30px; }
+.b { margin-top: 20px; }     /* gap between them is 30px, not 50px */
+```
+
+### Box-sizing: before and after
+
+```css
+.content-box { box-sizing: content-box; width: 200px; padding: 20px; border: 5px solid; }  /* total: 250px */
+.border-box  { box-sizing: border-box;  width: 200px; padding: 20px; border: 5px solid; }  /* total: 200px */
+```
+
+### Border-radius: shapes
+
+```css
+.square  { width: 100px; height: 100px; border-radius: 0; }
+.rounded { width: 100px; height: 100px; border-radius: 15px; }
+.circle  { width: 100px; height: 100px; border-radius: 50%; }
+.leaf    { width: 100px; height: 100px; border-radius: 0 50px; }
+.tab     { border-radius: 10px 10px 0 0; }
+```
+
+### Box-shadow: many styles
+
+```css
+.soft   { box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+.deep   { box-shadow: 0 15px 35px rgba(0,0,0,0.3); }
+.glow   { box-shadow: 0 0 20px rgba(0,150,255,0.8); }
+.inset  { box-shadow: inset 0 2px 6px rgba(0,0,0,0.3); }
+.layered{ box-shadow: 0 1px 2px rgba(0,0,0,0.2), 0 8px 16px rgba(0,0,0,0.2); }
+.hard   { box-shadow: 6px 6px 0 #000; }   /* retro style */
+```
+
+---
+
+## Phase 3: More Layout Examples
+
+### Display: block vs inline vs inline-block vs none
+
+```html
+<span class="a">Span A</span>
+<span class="a">Span B</span>
+<div class="b">Div 1</div>
+<div class="b">Div 2</div>
+<span class="c">Box 1</span>
+<span class="c">Box 2</span>
+<p class="d">I am hidden</p>
+```
+
+```css
+.a { background: pink; padding: 10px; }                         /* inline: same line, padding sideways only works well */
+.b { background: lightgreen; }                                  /* block: new lines, full width */
+.c { display: inline-block; width: 100px; height: 60px; background: skyblue; }  /* inline-block: same line + size */
+.d { display: none; }                                           /* gone */
+```
+
+Use case: horizontal menu from a list.
+
+```css
+nav li { display: inline-block; margin-right: 15px; }
+```
+
+### Position: all five in one demo
+
+```css
+.static   { position: static; }
+.relative { position: relative; top: 10px; left: 20px; }
+
+.card { position: relative; width: 250px; }
+.card .badge {                       /* absolute badge in the card corner */
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: red;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+
+.back-to-top {                       /* fixed button */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.table-head {                        /* sticky table header */
+  position: sticky;
+  top: 0;
+  background: white;
+}
+```
+
+Center something using absolute:
+
+```css
+.parent { position: relative; height: 300px; }
+.child  {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+```
+
+### Overflow: scrollable areas
+
+```css
+.chat-box {                       /* vertical scroll */
+  height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+}
+
+.table-wrap {                     /* horizontal scroll for wide tables */
+  overflow-x: auto;
+}
+
+.image-frame {                    /* crop an image */
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+```
+
+### Z-index: dropdown and modal
+
+```css
+.dropdown-menu {
+  position: absolute;
+  z-index: 100;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;                       /* top, right, bottom, left = 0 */
+  background: rgba(0,0,0,0.6);
+  z-index: 1000;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 30px;
+  z-index: 1001;                  /* above the overlay */
+}
+```
+
+### Float and Clear: image with text and a 2-column layout
+
+```css
+.left-img  { float: left;  margin: 0 15px 10px 0; }
+.right-img { float: right; margin: 0 0 10px 15px; }
+
+.col-left  { float: left;  width: 30%; }
+.col-right { float: right; width: 70%; }
+.footer    { clear: both; }
+```
+
+---
+
+## Phase 4: More Flexbox Examples
+
+### What is Flexbox? Equal boxes
+
+```css
+.row { display: flex; }
+.row > div { flex: 1; padding: 20px; border: 1px solid #333; }
+```
+
+### Flex-direction: vertical menu
+
+```css
+.sidebar { display: flex; flex-direction: column; gap: 10px; width: 200px; }
+
+.stack-on-mobile { display: flex; flex-direction: row; }
+@media (max-width: 600px) {
+  .stack-on-mobile { flex-direction: column; }
+}
+```
+
+### Justify-content: common patterns
+
+```css
+.nav      { display: flex; justify-content: space-between; }   /* logo left, links right */
+.buttons  { display: flex; justify-content: flex-end; gap: 10px; }  /* buttons at the right */
+.centered { display: flex; justify-content: center; }
+.steps    { display: flex; justify-content: space-around; }
+.even     { display: flex; justify-content: space-evenly; }
+```
+
+### Align-items: vertical alignment
+
+```css
+.media { display: flex; align-items: center; gap: 15px; }   /* icon + text */
+.top   { display: flex; align-items: flex-start; height: 200px; }
+.bottom{ display: flex; align-items: flex-end; height: 200px; }
+.equal-height-cards { display: flex; align-items: stretch; }
+```
+
+### Flex-wrap: card gallery
+
+```css
+.gallery { display: flex; flex-wrap: wrap; gap: 20px; }
+.gallery .card { flex: 1 1 250px; }     /* each card is at least 250px, then wraps */
+```
+
+### Gap: tags list
+
+```css
+.tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag  { padding: 5px 12px; background: #eee; border-radius: 20px; }
+```
+
+### Align-content: multiple lines
+
+```css
+.wrap-box {
+  display: flex;
+  flex-wrap: wrap;
+  height: 400px;
+  align-content: space-between;   /* lines at the top and bottom edges */
+}
+.wrap-box > div { width: 45%; height: 50px; }
+```
+
+### Flex-grow and Flex-shrink: layouts
+
+```css
+/* Sidebar fixed, content fills the rest */
+.layout { display: flex; }
+.sidebar { flex: 0 0 250px; }        /* do not grow, do not shrink, 250px */
+.content { flex: 1; }                /* take all remaining space */
+
+/* Search bar: input grows, button stays */
+.search { display: flex; }
+.search input  { flex: 1; }
+.search button { flex-shrink: 0; }
+
+/* Footer pushed to the bottom */
+body { display: flex; flex-direction: column; min-height: 100vh; }
+main { flex: 1; }
+```
+
+Push one item to the far side:
+
+```css
+.navbar .login { margin-left: auto; }
+```
+
+---
+
+## Phase 5: More Grid Examples
+
+### Grid container: photo gallery
+
+```css
+.photos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.photos img { width: 100%; height: 200px; object-fit: cover; }
+```
+
+### Grid columns: common layouts
+
+```css
+.two-col   { display: grid; grid-template-columns: 1fr 1fr; }
+.sidebar   { display: grid; grid-template-columns: 250px 1fr; }
+.holy-grail{ display: grid; grid-template-columns: 200px 1fr 200px; }
+.auto-fill { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; }
+```
+
+### Grid rows: header, content, footer
+
+```css
+.app {
+  display: grid;
+  grid-template-rows: 60px 1fr 40px;
+  min-height: 100vh;
+}
+```
+
+Featured item spanning rows and columns:
+
+```css
+.gallery { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 150px; gap: 10px; }
+.gallery .big { grid-column: span 2; grid-row: span 2; }
+```
+
+### Grid gap: spacing options
+
+```css
+.tight  { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
+.loose  { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+.mixed  { display: grid; grid-template-columns: repeat(3, 1fr); row-gap: 10px; column-gap: 50px; }
+```
+
+### Grid-template-areas: responsive page
+
+```css
+.page {
+  display: grid;
+  grid-template-areas:
+    "header"
+    "main"
+    "sidebar"
+    "footer";
+  gap: 10px;
+}
+
+@media (min-width: 768px) {
+  .page {
+    grid-template-columns: 1fr 250px;
+    grid-template-areas:
+      "header header"
+      "main   sidebar"
+      "footer footer";
+  }
+}
+
+.page header  { grid-area: header; }
+.page main    { grid-area: main; }
+.page aside   { grid-area: sidebar; }
+.page footer  { grid-area: footer; }
+```
+
+### Grid alignment: centering
+
+```css
+.center-one  { display: grid; place-items: center; height: 100vh; }   /* shortest centering trick */
+.corner-item { display: grid; }
+.corner-item .x { justify-self: end; align-self: end; }
+.spread      { display: grid; grid-template-columns: repeat(3, 100px); justify-content: space-between; }
+```
+
+---
+
+## Phase 6: More Responsive Examples
+
+### Media queries: hide, show and resize
+
+```css
+.desktop-only { display: block; }
+.mobile-only  { display: none; }
+
+@media (max-width: 768px) {
+  .desktop-only { display: none; }
+  .mobile-only  { display: block; }
+  h1 { font-size: 1.8rem; }
+  .container { padding: 10px; }
+}
+
+@media print {
+  nav, footer { display: none; }      /* style for printing */
+}
+```
+
+### Mobile-first: navbar
+
+```css
+/* mobile: stacked */
+.nav { display: flex; flex-direction: column; }
+
+/* desktop: in a row */
+@media (min-width: 768px) {
+  .nav { flex-direction: row; justify-content: space-between; }
+}
+```
+
+### Responsive units: fluid typography and spacing
+
+```css
+h1 { font-size: clamp(1.8rem, 5vw, 3.5rem); }
+.section { padding: clamp(20px, 5vw, 80px); }
+.wrapper { width: min(90%, 1100px); margin-inline: auto; }
+.hero { min-height: 80vh; }
+```
+
+### Responsive images: card image and background
+
+```css
+.card img { width: 100%; height: auto; display: block; }
+.avatar   { width: 80px; height: 80px; object-fit: cover; border-radius: 50%; }
+.video-wrap { aspect-ratio: 16 / 9; }
+.video-wrap iframe { width: 100%; height: 100%; }
+```
+
+```html
+<img src="small.jpg"
+     srcset="small.jpg 480w, medium.jpg 800w, large.jpg 1200w"
+     sizes="(max-width: 600px) 480px, (max-width: 1000px) 800px, 1200px"
+     alt="Responsive photo">
+```
+
+### Breakpoints: one grid, four layouts
+
+```css
+.cards { display: grid; gap: 16px; grid-template-columns: 1fr; }
+
+@media (min-width: 600px)  { .cards { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 900px)  { .cards { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1200px) { .cards { grid-template-columns: repeat(4, 1fr); } }
+```
+
+---
+
+## Phase 7: More Advanced Examples
+
+### Pseudo-classes: forms, lists and tables
+
+```css
+input:focus  { border-color: dodgerblue; box-shadow: 0 0 5px dodgerblue; outline: none; }
+input:valid  { border-color: green; }
+input:invalid{ border-color: red; }
+input:required { border-left: 4px solid orange; }
+input::placeholder { color: #aaa; }
+
+tr:nth-child(even) { background: #f9f9f9; }       /* table stripes */
+tr:hover           { background: #eef; }
+li:not(:last-child){ border-bottom: 1px solid #eee; }
+.menu li:first-child { font-weight: bold; }
+
+/* Custom checkbox toggle */
+input[type="checkbox"]:checked + label { text-decoration: line-through; color: gray; }
+```
+
+### Pseudo-elements: icons, badges, overlays
+
+```css
+.link::after { content: " ↗"; }
+.price::before { content: "₹"; }
+
+.title::before, .title::after {
+  content: "";
+  display: inline-block;
+  width: 40px;
+  height: 2px;
+  background: #333;
+  vertical-align: middle;
+  margin: 0 10px;
+}
+
+.image-card { position: relative; }
+.image-card::after {                       /* dark overlay on an image */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+}
+
+p::first-letter { float: left; font-size: 3rem; margin-right: 8px; }
+```
+
+### Transitions: buttons, links and menus
+
+```css
+.btn {
+  background: #333;
+  color: white;
+  padding: 10px 20px;
+  transition: all 0.3s ease;
+}
+.btn:hover { background: #ff5722; transform: translateY(-2px); }
+
+.link { position: relative; text-decoration: none; }
+.link::after {                              /* animated underline */
+  content: "";
+  position: absolute;
+  left: 0; bottom: -3px;
+  width: 0; height: 2px;
+  background: blue;
+  transition: width 0.3s;
+}
+.link:hover::after { width: 100%; }
+
+.dropdown { opacity: 0; visibility: hidden; transition: opacity 0.3s; }
+.menu-item:hover .dropdown { opacity: 1; visibility: visible; }
+```
+
+### Transform: cards, icons and flips
+
+```css
+.card:hover { transform: translateY(-10px) scale(1.03); }
+.icon:hover { transform: rotate(360deg); transition: transform 0.6s; }
+.tilt       { transform: rotate(-5deg); }
+.mirror     { transform: scaleX(-1); }           /* flip horizontally */
+
+/* Flip card */
+.flip { perspective: 1000px; }
+.flip-inner { transition: transform 0.6s; transform-style: preserve-3d; }
+.flip:hover .flip-inner { transform: rotateY(180deg); }
+```
+
+### Animations: pulse, slide, typing and shake
+
+```css
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.1); }
+}
+.heart { animation: pulse 1s infinite; }
+
+@keyframes slideIn {
+  from { transform: translateX(-100%); opacity: 0; }
+  to   { transform: translateX(0);     opacity: 1; }
+}
+.panel { animation: slideIn 0.6s ease-out; }
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25%      { transform: translateX(-8px); }
+  75%      { transform: translateX(8px); }
+}
+.error { animation: shake 0.4s; }
+
+@keyframes typing { from { width: 0; } to { width: 20ch; } }
+.type {
+  width: 20ch;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid;
+  animation: typing 3s steps(20) forwards;
+}
+
+@keyframes gradientMove {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+.rainbow {
+  background: linear-gradient(90deg, red, orange, yellow, green, blue);
+  background-size: 200% 100%;
+  animation: gradientMove 3s linear infinite alternate;
+}
+```
+
+### CSS Variables: a theme system
+
+```css
+:root {
+  --primary: #6366f1;
+  --primary-dark: #4338ca;
+  --text: #1f2937;
+  --bg: #ffffff;
+  --radius: 10px;
+  --shadow: 0 4px 12px rgba(0,0,0,0.1);
+  --space: 1rem;
+}
+
+.card   { background: var(--bg); color: var(--text); border-radius: var(--radius); box-shadow: var(--shadow); padding: var(--space); }
+.btn    { background: var(--primary); border-radius: var(--radius); }
+.btn:hover { background: var(--primary-dark); }
+
+/* Dark theme via system setting */
+@media (prefers-color-scheme: dark) {
+  :root { --text: #f3f4f6; --bg: #111827; }
+}
+
+/* Change a variable locally */
+.danger { --primary: #dc2626; --primary-dark: #991b1b; }
+
+/* Variables can be used with calc() */
+.box { padding: calc(var(--space) * 2); }
+```
+
+### Specificity: who wins?
+
+```html
+<button id="save" class="btn primary">Save</button>
+```
+
+```css
+button          { background: gray; }     /* 0-0-1  = 1   */
+.btn            { background: blue; }     /* 0-1-0  = 10  */
+.btn.primary    { background: green; }    /* 0-2-0  = 20  */
+button.btn      { background: orange; }   /* 0-1-1  = 11  */
+#save           { background: red; }      /* 1-0-0  = 100  ← wins: red */
+```
+
+How to **avoid** specificity wars:
+
+```css
+/* Bad */
+div#main .content p.text { color: red; }
+
+/* Good: one simple class */
+.text { color: red; }
+```
+
+### Inheritance: practical use
+
+```css
+body { font-family: Arial, sans-serif; color: #333; line-height: 1.6; }   /* everything inherits */
+
+a { color: inherit; text-decoration: none; }     /* links use the parent's color */
+button, input { font-family: inherit; }          /* form elements don't inherit fonts by default */
+
+.card { border: 2px solid red; }
+.card .inner { border: inherit; }                /* force inheriting a non-inherited property */
+
+.reset { all: unset; }                           /* reset every property */
+```
+
+---
+
+## Phase 8: More Project Ideas
+
+Once you finish the 8 main projects, try these extra mini projects.
+
+| Level | Project | Main skills |
+|-------|---------|-------------|
+| Beginner | Button collection (10 styles) | hover, transition, border-radius |
+| Beginner | Image gallery | Grid, hover zoom |
+| Beginner | Blog article page | typography, spacing |
+| Beginner | Testimonial card | box model, pseudo-elements |
+| Intermediate | Animated loading spinners | keyframes, transform |
+| Intermediate | Dark/light mode toggle | CSS variables |
+| Intermediate | Accordion / FAQ section | transitions, pseudo-classes |
+| Intermediate | Weather card UI | Flexbox, gradients |
+| Advanced | Netflix-style movie grid | Grid, hover scale, overflow |
+| Advanced | E-commerce product page | Grid, responsive design |
+| Advanced | Animated hero with parallax | position, background-attachment, animations |
+| Advanced | CSS-only drawing (pure CSS art) | border-radius, position, gradients |
+
+### Quick project example: Button collection
+
+```html
+<button class="b b-solid">Solid</button>
+<button class="b b-outline">Outline</button>
+<button class="b b-pill">Pill</button>
+<button class="b b-gradient">Gradient</button>
+<button class="b b-shadow">3D</button>
+```
+
+```css
+.b { padding: 12px 28px; font-size: 16px; cursor: pointer; border: none; margin: 8px; transition: 0.3s; }
+
+.b-solid    { background: #2563eb; color: white; border-radius: 6px; }
+.b-solid:hover { background: #1d4ed8; }
+
+.b-outline  { background: transparent; color: #2563eb; border: 2px solid #2563eb; border-radius: 6px; }
+.b-outline:hover { background: #2563eb; color: white; }
+
+.b-pill     { background: #10b981; color: white; border-radius: 50px; }
+
+.b-gradient { background: linear-gradient(45deg, #f43f5e, #f59e0b); color: white; border-radius: 6px; }
+.b-gradient:hover { transform: scale(1.08); }
+
+.b-shadow   { background: #8b5cf6; color: white; border-radius: 6px; box-shadow: 0 5px 0 #6d28d9; }
+.b-shadow:active { transform: translateY(5px); box-shadow: none; }
+```
+
+### Quick project example: Accordion (FAQ) without JavaScript
+
+```html
+<details class="faq">
+  <summary>What is CSS?</summary>
+  <p>CSS styles your HTML pages.</p>
+</details>
+<details class="faq">
+  <summary>Is CSS hard?</summary>
+  <p>Not if you practice every day!</p>
+</details>
+```
+
+```css
+.faq { border: 1px solid #ddd; border-radius: 8px; margin-bottom: 10px; }
+.faq summary { padding: 15px; cursor: pointer; font-weight: bold; }
+.faq summary:hover { background: #f5f5f5; }
+.faq[open] summary { background: #eef2ff; }
+.faq p { padding: 0 15px 15px; }
+```
+
+---
+
+# ✍️ Practice Challenges (Try Without Looking!)
+
+1. Make a `<div>` 200×200 with a red background, rounded corners and a shadow.
+2. Center a box both horizontally and vertically using Flexbox. Then do it again using Grid.
+3. Build a 3-column layout that becomes 1 column on mobile.
+4. Make a button that changes color and moves up slightly when hovered.
+5. Create a loading spinner with `@keyframes`.
+6. Make a card with a badge in its top-right corner using `position`.
+7. Build a theme with CSS variables, then change the primary color in one place.
+8. Style a list so that odd items have a light background using `:nth-child`.
+9. Build a page layout with `grid-template-areas`: header, sidebar, main, footer.
+10. Write two competing rules and predict which one wins using specificity.
